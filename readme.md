@@ -65,7 +65,7 @@ else res = res.OrderByDescending(c => c.Year);
 return res;
 ```
 4. Далее добавил радиокнопки в разметку для сортировки по году выхода книги:
-```
+```XML
 <Label 
 Content="Год выпуска:" 
 VerticalAlignment="Center"/>
