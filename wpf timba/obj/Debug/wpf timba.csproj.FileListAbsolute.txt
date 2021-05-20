@@ -13,3 +13,18 @@ C:\Users\User\source\repos\wpf timba\wpf timba\obj\Debug\wpf timba.csproj.Genera
 C:\Users\User\source\repos\wpf timba\wpf timba\obj\Debug\wpf timba.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\wpf timba\wpf timba\obj\Debug\wpf timba.exe
 C:\Users\User\source\repos\wpf timba\wpf timba\obj\Debug\wpf timba.pdb
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\bin\Debug\wpf timba.exe.config
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\bin\Debug\wpf timba.exe
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\bin\Debug\wpf timba.pdb
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba.csprojAssemblyReference.cache
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\MainWindow.g.cs
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\App.g.cs
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba_MarkupCompile.cache
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba_MarkupCompile.lref
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\MainWindow.baml
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba.g.resources
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf_timba.Properties.Resources.resources
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba.csproj.GenerateResource.cache
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba.csproj.CoreCompileInputs.cache
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba.exe
+C:\Users\Тимба\source\repos\Second-Work\wpf timba\obj\Debug\wpf timba.pdb

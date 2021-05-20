@@ -64,6 +64,22 @@ Content="{Binding Title}"/>
     VerticalAlignment="Center"
     x:Name="SearchFilterTextBox" 
     KeyUp="SearchFilterTextBox_KeyUp"/>
+            <Label
+                Content="Год выпуска"
+                VerticalAlignment="Center"/>
+            <RadioButton
+                GroupName="Year"
+                Tag="1"
+                Content="По возрастанию"
+                IsChecked="True"
+                Checked="RadioButton_Checked"
+                VerticalAlignment="Center"/>
+            <RadioButton
+                GroupName="Year"
+                Tag="2"
+                Content="По убыванию"
+                Checked="RadioButton_Checked"
+                VerticalAlignment="Center"/>
         </WrapPanel>
 
         <DataGrid

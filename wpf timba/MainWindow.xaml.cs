@@ -40,7 +40,10 @@ namespace wpf_timba
 
                 if (SearchFilter != "")
                     res = res.Where(c => c.NameAvtor.IndexOf(SearchFilter, StringComparison.OrdinalIgnoreCase) >= 0);
+                if (SortAsc) res = res.OrderBy(c => c.Year);
+                else res = res.OrderByDescending(c => c.Year);
 
+                
                 return res;
             }
                 set
@@ -83,6 +86,12 @@ namespace wpf_timba
         private void SearchFilterTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             SearchFilter = SearchFilterTextBox.Text;
+            Invalidate();
+        }
+        private bool SortAsc = true;
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            SortAsc = (sender as RadioButton).Tag.ToString() == "1";
             Invalidate();
         }
     }
