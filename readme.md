@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <td style="text-align: center; border: none; height: 15em;"><h2>Отчет по лабораторной работe<h2><br>
-    По теме: "Каркас приложения. Модель данных. Привязка данных."
+    По теме: "Поиск, сортировка."
     </td>
   </tr>
   <tr>
@@ -26,90 +26,73 @@
 
 # Цели и задачи:
 
-1. Ознакомиться с информацией из [лекции](https://github.com/kolei/OAP/blob/master/articles/wpf_filtering.md)
-2. Создать фильтрацию.
+1. Ознакомиться с информацией из [лекции](https://github.com/kolei/OAP/blob/master/articles/wpf_search_sort.md)
+2. Создать поиск и сортировку
 
 # Вывод 
-1. Реализовал геттер и сеттер для списка книг:
-```
-public string SelectedJanr = "";
-
-private IEnumerable<Book> _BookList = null;
-
-public event PropertyChangedEventHandler PropertyChanged;
-
-public IEnumerable<Book> BookList 
-{
-get
-{
-return _BookList
-.Where(c => (SelectedJanr == "Все жанры" || c.Janr == SelectedJanr));
-}
-set
-{
-_BookList = value;
-}
-}
-```
-2. Создал класс для элемента справочника:
-```
-{
-public class BookJanr
-{
-public string Title { get; set; }
-}
-}
-```
-3. Добавил в разметку выпадающий список для выбора жанра:
-```XML
-<WrapPanel
-Orientation="Horizontal"
-Grid.Column="1"
-MinHeight="50">
+1. В разметке окна в элементе WrapPanel добавил элемент для ввода текста - TextBox:
+``` XML
 <Label 
-Content="Жанр:"
+Content="искать" 
 VerticalAlignment="Center"/>
-
-<ComboBox
-Name="BreedFilterComboBox"
-SelectionChanged="BreedFilterComboBox_SelectionChanged"
+<TextBox
+Width="200"
 VerticalAlignment="Center"
-MinWidth="100"
-SelectedIndex="0"
-ItemsSource="{Binding BookJanrList}">
+x:Name="SearchFilterTextBox" 
+KeyUp="SearchFilter_KeyUp"/>
+```
+2. В коде окна создал переменную для хранения строки поиска 
+```
+private string SearchFilter = ""; 
 
-<ComboBox.ItemTemplate>
-<DataTemplate>
-<Label 
-Content="{Binding Title}"/>
-</DataTemplate>
-</ComboBox.ItemTemplate>
-</ComboBox>
-</WrapPanel>
-```
-4. Добавил интерфейс окну:
-```
-public partial class MainWindow : Window, INotifyPropertyChanged
-```
-5. Реализовал интерфейс:
-```
-public event PropertyChangedEventHandler PropertyChanged;
-```
-6. Написал метод, который будет сообщать визуальной части что что-то изменилось
-```
-private void Invalidate()
+private void SearchFilter_KeyUp(object sender, KeyEventArgs e)
 {
-if (PropertyChanged != null)
-PropertyChanged(this, new PropertyChangedEventArgs("BookList"));
-}
-```
-7. В обработчик события выбора жанра добавил вызов метода:
-```
-private void BreedFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-{
-SelectedBreed = (BreedFilterComboBox.SelectedItem as BookJanr).Title;
+SearchFilter = SearchFilterTextBox.Text;
 Invalidate();
 }
 ```
+3. Доработал геттер списка книг:  
+```
+get {
+
+var res = _BookList;
+res = res.Where(c => SelectedJanr =="Все жанры" | c.Janr == SelectedJanr);
+
+if (SearchFilter != "")
+res = res.Where(c => c.NameAvtor.IndexOf(SearchFilter, StringComparison.OrdinalIgnoreCase) >= 0);
+if (SortAsc) res = res.OrderBy(c => c.Year);
+else res = res.OrderByDescending(c => c.Year);
+return res;
+```
+4. Далее добавил радиокнопки в разметку для сортировки по году выхода книги:
+```
+<Label 
+Content="Год выпуска:" 
+VerticalAlignment="Center"/>
+<RadioButton
+GroupName="Year"
+Tag="1"
+Content="по возрастанию"
+IsChecked="True"
+Checked="RadioButton_Checked"
+VerticalAlignment="Center"/>
+<RadioButton
+GroupName="Year"
+Tag="2"
+Content="по убыванию"
+Checked="RadioButton_Checked"
+VerticalAlignment="Center"/>
+```
+5. РПосле чего, в коде добавил переменную для хранения варианта сортировки и обработчик смены варианта сортировки:
+```
+private bool SortAsc = true;
+
+private void RadioButton_Checked(object sender, RoutedEventArgs e)
+{
+SortAsc = (sender as RadioButton).Tag.ToString() == "1";
+Invalidate();
+}
+```
+
 # Результат работы:
-![](./secresult.JPG)
+![](./rez.PNG)
