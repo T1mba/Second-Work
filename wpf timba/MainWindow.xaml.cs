@@ -26,19 +26,29 @@ namespace wpf_timba
         private IEnumerable<Book> _BookList = null;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private string SearchFilter = "";
 
+        
         public IEnumerable<Book> BookList 
         {
-            get
-            {
-                return _BookList
-                    .Where(c => (SelectedJanr == "Все жанры" || c.Janr == SelectedJanr));
+
+             
+                get {
+                   
+                 var res = _BookList;
+                 res = res.Where(c => SelectedJanr =="Все жанры" | c.Janr == SelectedJanr);
+
+                if (SearchFilter != "")
+                    res = res.Where(c => c.NameAvtor.IndexOf(SearchFilter, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                return res;
             }
-            set
+                set
             {
-                _BookList = value;
+                    _BookList = value;
+                }
             }
-        }
+            
 
 
 
@@ -67,6 +77,12 @@ namespace wpf_timba
         private void BreedFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedJanr = (BreedFilterComboBox.SelectedItem as BookJanr).Title;
+            Invalidate();
+        }
+
+        private void SearchFilterTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            SearchFilter = SearchFilterTextBox.Text;
             Invalidate();
         }
     }

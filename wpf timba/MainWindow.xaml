@@ -35,25 +35,35 @@
           Orientation="Horizontal"
             Grid.Column="1"
             MinHeight="50">
+            
             <Label 
-    Content="Жанр:"
-    VerticalAlignment="Center"/>
+Content="Жанр:"
+VerticalAlignment="Center"/>
 
             <ComboBox
-    Name="BreedFilterComboBox"
-    SelectionChanged="BreedFilterComboBox_SelectionChanged"
-    VerticalAlignment="Center"
-    MinWidth="100"
-    SelectedIndex="0"
-    ItemsSource="{Binding BookJanrList}">
+Name="BreedFilterComboBox"
+SelectionChanged="BreedFilterComboBox_SelectionChanged"
+VerticalAlignment="Center"
+MinWidth="100"
+SelectedIndex="0"
+ItemsSource="{Binding BookJanrList}">
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label 
-                Content="{Binding Title}"/>
+Content="{Binding Title}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <Label 
+    Content="Искать"
+    VerticalAlignment="Center"/>
+
+            <TextBox
+    Width="200"
+    VerticalAlignment="Center"
+    x:Name="SearchFilterTextBox" 
+    KeyUp="SearchFilterTextBox_KeyUp"/>
         </WrapPanel>
 
         <DataGrid
