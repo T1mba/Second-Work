@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:wpf_timba"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Абитуренты" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -14,16 +14,74 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel VerticalAlignment="Bottom" Grid.RowSpan ="3">
-            <Button Background="LightYellow" Content="button1"/>
+        <Image
+            Source="./Photo/abs.png"
+            Grid.RowSpan="2"/>
+        <StackPanel 
+            Orientation="Vertical"
+            Grid.RowSpan ="3"
+            VerticalAlignment="Bottom">
+            <Button
+                x:Name="ExitButton"
+                Content="Выход"
+                Click="ExitButton_Click"
+                Height="50"/>
         </StackPanel>
-        <WrapPanel Grid.Column="1" ItemWidth="600"></WrapPanel>
-        <Button Background="Blue" Content="1" />
-        <Button Background="White" Content="2" />
-        <Button Background="Red" Content="3" />
+        <WrapPanel
+                Orientation="Horizontal"    
+                Grid.Column="1"
+                MinHeight="50">
+            <Label
+                Content="Направление:"
+                VerticalAlignment="Center"/>
+            <ComboBox
+                Name="AbiturentNapravleniesFilterCobmoBox"
+                SelectionChanged ="AbiturentNapravleniesFilterCobmoBox_SelectionChanged"
+                VerticalAlignment="Center"
+                MinWidth ="100"
+                SelectedIndex="0"
+                ItemsSource="{Binding AbiturentNapravleniesList}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label
+                            Content="{Binding Title}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                
+            </ComboBox>
+                
+        </WrapPanel>
+        <DataGrid
+            Grid.Row="1"
+            Grid.Column="1"
+            CanUserAddRows="False"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding AbiturentList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Имя"
+                    Binding="{Binding Name}"/>
+                <DataGridTextColumn
+                    Header="Возраст"
+                    Binding="{Binding Age}"/>
+                <DataGridTextColumn
+                    Header="Класс"
+                    Binding="{Binding Klass}"/>
+                <DataGridTextColumn
+                    Header="Специальность"
+                    Binding="{Binding Napravlenie}"/>
+                <DataGridTextColumn
+                    Header="Средний балл"
+                    Binding="{Binding Ball}"/>
+                <DataGridTextColumn
+                   Header="Дата окончания школы"
+                   Binding="{Binding DataEnd}"/>
 
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
