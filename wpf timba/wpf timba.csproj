@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -71,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Model\Abiturent.cs" />
     <Compile Include="Model\AbiturentNapravlenie.cs" />
+    <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\Globals.cs" />
     <Compile Include="Model\IDataProvider.cs" />
     <Compile Include="Model\LocalDataProvider.cs" />
