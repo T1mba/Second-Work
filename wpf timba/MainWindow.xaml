@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:wpf_timba"
 
         mc:Ignorable="d"
-        Title="Абитуренты" Height="350" Width="525">
+        Title="Абитуренты" Height="auto" Width="auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -52,7 +52,31 @@
                 </ComboBox.ItemTemplate>
                 
             </ComboBox>
-                
+            <Label
+                    Content="Искать"
+                    VerticalAlignment="Center"/>
+            <TextBox
+                Width="200"
+                VerticalAlignment="Center"
+                x:Name="SearchFilterTextBox"
+                KeyUp="SearchFilterTextBox_KeyUp"/>
+            <Label
+                Content="Возраст"
+                VerticalAlignment="Center"/>
+            <RadioButton
+                GroupName="Age"
+                Tag="1"
+                Content="По возрастанию"
+                IsChecked="True"
+                Checked="RadioButton_Checked"
+                VerticalAlignment="Center"/>
+            <RadioButton
+                GroupName="Age"
+                Tag="2"
+                Content="По убыванию"
+                IsChecked="True"
+                Checked="RadioButton_Checked"
+                VerticalAlignment="Center"/>
         </WrapPanel>
         <DataGrid
             Grid.Row="1"
@@ -76,9 +100,9 @@
                 <DataGridTextColumn
                     Header="Средний балл"
                     Binding="{Binding Ball}"/>
-                <DataGridTextColumn
+                <DataGridTextColumn 
                    Header="Дата окончания школы"
-                   Binding="{Binding DataEnd}"/>
+                   Binding="{Binding DateEndString}"/>
 
 
             </DataGrid.Columns>

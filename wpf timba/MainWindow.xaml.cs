@@ -33,8 +33,15 @@ namespace wpf_timba
         {
             get
             {
-                return _AbitrentList
-                    .Where(c => SelectedNapravlenie == "Все направления" | c.Napravlenie == SelectedNapravlenie);
+                var res = _AbitrentList;
+                    res = res.Where(c => SelectedNapravlenie == "Все направления" | c.Napravlenie == SelectedNapravlenie);
+                if (SearchFilter != "")
+                    res = res.Where(c => c.Napravlenie.IndexOf(SearchFilter, StringComparison.OrdinalIgnoreCase) >= 0);
+                else res = res.OrderByDescending(c => c.Napravlenie);
+              
+                if (SortAsc) res = res.OrderBy(c => c.Age);
+                else res = res.OrderByDescending(c => c.Age);
+                return res;
             }
             set
             {
@@ -73,6 +80,18 @@ namespace wpf_timba
         private void AbiturentNapravleniesFilterCobmoBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedNapravlenie = (AbiturentNapravleniesFilterCobmoBox.SelectedItem as AbiturentNapravlenie).Title;
+            Invalidate();
+        }
+        private string SearchFilter = "";
+        private void SearchFilterTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            SearchFilter = SearchFilterTextBox.Text;
+            Invalidate();
+        }
+        private bool SortAsc = true;
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            SortAsc = (sender as RadioButton).Tag.ToString() == "1";
             Invalidate();
         }
     }

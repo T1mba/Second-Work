@@ -14,7 +14,13 @@ namespace wpf_timba.Model
         public string Napravlenie { get; set; }
         public double Ball { get; set; }
         public DateTime DataEnd { get; set; }
-        
+
+
+        public String DateEndString {
+            get {
+                return DataEnd.ToLongDateString();
+            }
+        }
       
 
 
