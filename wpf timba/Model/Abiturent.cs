@@ -18,7 +18,7 @@ namespace wpf_timba.Model
 
         public String DateEndString {
             get {
-                return DataEnd.ToLongDateString();
+                return DataEnd.ToShortDateString();
             }
         }
       

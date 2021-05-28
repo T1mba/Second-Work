@@ -78,7 +78,7 @@
                 Checked="RadioButton_Checked"
                 VerticalAlignment="Center"/>
         </WrapPanel>
-        <DataGrid
+        <DataGrid 
             Grid.Row="1"
             Grid.Column="1"
             CanUserAddRows="False"
@@ -103,9 +103,8 @@
                 <DataGridTextColumn 
                    Header="Дата окончания школы"
                    Binding="{Binding DateEndString}"/>
-
-
             </DataGrid.Columns>
+            
         </DataGrid>
     </Grid>
 </Window>

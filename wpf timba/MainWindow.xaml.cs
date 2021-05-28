@@ -58,6 +58,7 @@ namespace wpf_timba
             AbiturentList = Globals.dataProvider.GetAbiturents();
             AbiturentNapravleniesList = Globals.dataProvider.GetAbiturentNapravlenies().ToList();
             AbiturentNapravleniesList.Insert(0, new AbiturentNapravlenie { Title = "Все направления" });
+            
 
 
         }

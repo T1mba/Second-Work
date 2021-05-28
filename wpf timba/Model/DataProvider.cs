@@ -13,10 +13,10 @@ namespace wpf_timba.Model
 
         public DataProvider(String fileName)
         {
+
             using (TextFieldParser parser = new TextFieldParser(fileName)) {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(";");
-
                 while (!parser.EndOfData)
                 {
                     //метод ReadFields разбивает исходную строку на массив строк
@@ -31,7 +31,7 @@ namespace wpf_timba.Model
                             DataEnd = DateTime.Parse(fields[5])
                         }
                         );
-
+                   
                 }
             }
         }
@@ -39,11 +39,16 @@ namespace wpf_timba.Model
 
         public IEnumerable<AbiturentNapravlenie> GetAbiturentNapravlenies()
         {
-            
+            return new AbiturentNapravlenie[]
+            {
+                 new AbiturentNapravlenie{ Title = "Коммерция"},
+                new AbiturentNapravlenie { Title = "Парикмахер"}
+            };
         }
 
         public IEnumerable<Abiturent> GetAbiturents()
         {
+
             return AbiturientList;
         }
     }
