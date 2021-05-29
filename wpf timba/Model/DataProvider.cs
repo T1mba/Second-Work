@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace wpf_timba.Model
 {
+
     public class DataProvider : IDataProvider
     {
         private List<Abiturent> AbiturientList = new List<Abiturent>();
@@ -14,7 +17,8 @@ namespace wpf_timba.Model
         public DataProvider(String fileName)
         {
 
-            using (TextFieldParser parser = new TextFieldParser(fileName)) {
+            using (TextFieldParser parser = new TextFieldParser(fileName))
+            {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(";");
                 while (!parser.EndOfData)
@@ -22,8 +26,9 @@ namespace wpf_timba.Model
                     //метод ReadFields разбивает исходную строку на массив строк
                     string[] fields = parser.ReadFields();
                     AbiturientList.Add(
-                        new Abiturent {
-                            Name = fields[0], 
+                        new Abiturent
+                        {
+                            Name = fields[0],
                             Age = int.Parse(fields[1]),
                             Klass = int.Parse(fields[2]),
                             Napravlenie = fields[3],
@@ -31,11 +36,11 @@ namespace wpf_timba.Model
                             DataEnd = DateTime.Parse(fields[5])
                         }
                         );
-                   
+
                 }
             }
         }
-    
+
 
         public IEnumerable<AbiturentNapravlenie> GetAbiturentNapravlenies()
         {
@@ -52,4 +57,6 @@ namespace wpf_timba.Model
             return AbiturientList;
         }
     }
+
+
 }

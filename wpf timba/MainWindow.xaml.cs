@@ -54,7 +54,7 @@ namespace wpf_timba
         {
             InitializeComponent();
             DataContext = this;
-            Globals.dataProvider = new DataProvider("Abutrents.CSV");
+            Globals.dataProvider = new DataProvider("ABS.JSON");
             AbiturentList = Globals.dataProvider.GetAbiturents();
             AbiturentNapravleniesList = Globals.dataProvider.GetAbiturentNapravlenies().ToList();
             AbiturentNapravleniesList.Insert(0, new AbiturentNapravlenie { Title = "Все направления" });
